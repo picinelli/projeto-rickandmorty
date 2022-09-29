@@ -27,7 +27,7 @@ export const InfoWrapper = styled.div`
 
 export const Name = styled.h1`
   color: #ffffff;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   margin-bottom: 3px;
 

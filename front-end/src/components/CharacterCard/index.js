@@ -1,10 +1,12 @@
 import { useState } from "react";
+import dayjs from "dayjs";
 import Modal from "react-modal";
 
 import { viewCard } from "../../styles/ModalStyle";
 import * as S from "./style";
 
-export default function CharacterCard() {
+export default function CharacterCard(props) {
+  const { character } = props;
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -18,17 +20,16 @@ export default function CharacterCard() {
 
   return (
     <S.Container onClick={openModal}>
-      <img
-        src="https://rickandmortyapi.com/api/character/avatar/320.jpeg"
-        alt="character"
-      />
+      <img src={character.image} alt="character" />
       <S.InfoWrapper>
-        <S.Name>Shnoopy Bloopers</S.Name>
-        <S.Status>Alive - Alien</S.Status>
+        <S.Name>{character.name}</S.Name>
+        <S.Status>
+          {character.status} - {character.species}
+        </S.Status>
         <S.InfoDescription>Quantidade de episodios:</S.InfoDescription>
-        <S.Info>294</S.Info>
+        <S.Info>{character.episode.length}</S.Info>
         <S.InfoDescription>Data de criação:</S.InfoDescription>
-        <S.Info>15/08/2020</S.Info>
+        <S.Info>{dayjs(character.created).format("DD/MM/YYYY")}</S.Info>
       </S.InfoWrapper>
       <Modal
         isOpen={modalIsOpen}
@@ -38,22 +39,19 @@ export default function CharacterCard() {
         contentLabel="Character Info"
       >
         <S.ModalContainer>
-          <img
-            src="https://rickandmortyapi.com/api/character/avatar/320.jpeg"
-            alt="character"
-          />
+          <img src={character.image} alt="character" />
           <S.ModalInfoWrapper>
-            <h1>Shnoopy Bloopers</h1>
+            <h1>{character.name}</h1>
             <h2>Status:</h2>
-            <p>Alive</p>
+            <p>{character.status}</p>
             <h2>Espécie:</h2>
-            <p>Alien</p>
+            <p>{character.species}</p>
             <h2>Gênero:</h2>
-            <p>Desconhecido</p>
+            <p>{character.gender}</p>
             <h2>Quantidade de episodios:</h2>
-            <p>294</p>
+            <p>{character.episode.length}</p>
             <h2>Data de criação:</h2>
-            <p>15/08/2020</p>
+            <p>{dayjs(character.created).format("DD/MM/YYYY")}</p>
           </S.ModalInfoWrapper>
         </S.ModalContainer>
       </Modal>
