@@ -135,4 +135,8 @@ body{
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
 }
+
+:root {
+  --orange: #F74C40
+}
 `;

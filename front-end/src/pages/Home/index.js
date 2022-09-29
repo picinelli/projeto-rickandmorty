@@ -1,3 +1,26 @@
+import CharacterCard from "../../components/CharacterCard";
+import Header from "../../components/Header";
+
+import * as S from "./style";
+
 export default function Home() {
-  return <h1></h1>;
+  return (
+    <>
+      <Header />
+      <S.Container>
+        <S.CardsWrapper>
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+          <CharacterCard />
+        </S.CardsWrapper>
+      </S.Container>
+    </>
+  );
 }
