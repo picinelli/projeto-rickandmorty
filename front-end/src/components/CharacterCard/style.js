@@ -7,6 +7,7 @@ export const Container = styled.div`
   display: flex;
   background-color: #3c3e44;
   border-radius: 10px;
+  cursor: pointer;
 
   img {
     width: 40%;

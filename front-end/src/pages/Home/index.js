@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import getAllCharacters from "../../api/getAllCharacters";
 import CharacterCard from "../../components/CharacterCard";
+import FilterDropdown from "../../components/FilterDropdown";
 import Header from "../../components/Header";
 import * as S from "./style";
 
-//https://rickandmortyapi.com/api/character
 export default function Home() {
   const [characters, setCharacters] = useState([]);
+  const [filterParams, setFilterParams] = useState({
+    species: null,
+    name: null,
+  });
 
   useEffect(() => {
     async function fetchInfo() {
@@ -19,6 +23,11 @@ export default function Home() {
     <>
       <Header />
       <S.Container>
+        <FilterDropdown
+          setCharacters={setCharacters}
+          setFilterParams={setFilterParams}
+          filterParams={filterParams}
+        />
         <S.CardsWrapper>
           {characters.map((e) => {
             return <CharacterCard character={e} key={e.id} />;
