@@ -1,0 +1,45 @@
+version: "3"
+services:
+  postgres_rickandmorty_db:
+    image: postgres
+    container_name: postgres_rickandmorty_db
+    restart: always
+    ports:
+      - 2345:5432
+    env_file:
+      - back-end/.env.dev
+    volumes:
+      - pg_rickandmorty-db:/var/lib/postgresql/data
+
+  node_rickandmorty_app:
+    container_name: node_rickandmorty_app
+    build: ./back-end
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres_rickandmorty_db
+    env_file:
+      - back-end/.env.dev
+
+  react_rickandmorty_app:
+    container_name: react_rickandmorty_app
+    build: ./front-end
+    volumes: 
+      - build_react:/var/www/html
+
+  nginx_rickandmorty_app:
+    container_name: nginx_rickandmorty_app
+    build: ./nginx
+    ports: 
+      - 8080:80
+    volumes:
+      - build_react:/var/www/html
+    depends_on:
+      - postgres_rickandmorty_db
+      - node_rickandmorty_app
+      - react_rickandmorty_app
+
+volumes:
+  pg_rickandmorty-db:
+  build_react:
+

@@ -1,0 +1,20 @@
+version: "3"
+services:
+  postgres_rickandmorty_db:
+    image: postgres
+    container_name: postgres_rickandmorty_db
+    restart: always
+    ports:
+      - 2345:5432
+    env_file:
+      - back-end/.env.test
+
+  node_rickandmorty_app:
+    container_name: node_rickandmorty_app
+    build: ./back-end
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres_rickandmorty_db
+    env_file:
+      - back-end/.env.test
