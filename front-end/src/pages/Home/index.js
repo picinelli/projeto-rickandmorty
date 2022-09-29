@@ -1,6 +1,5 @@
 import CharacterCard from "../../components/CharacterCard";
 import Header from "../../components/Header";
-
 import * as S from "./style";
 
 export default function Home() {
@@ -9,7 +8,6 @@ export default function Home() {
       <Header />
       <S.Container>
         <S.CardsWrapper>
-          <CharacterCard />
           <CharacterCard />
           <CharacterCard />
           <CharacterCard />
