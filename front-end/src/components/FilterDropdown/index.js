@@ -18,8 +18,6 @@ export default function FilterDropdown(props) {
   }
 
   async function fetchInfo(filterParams) {
-    //TODO: COMMIT
-    //FIXME: Colocar setFilterParams aqui
     setFilterParams(filterParams);
     setCharacters(await getAllCharacters(filterParams));
   }

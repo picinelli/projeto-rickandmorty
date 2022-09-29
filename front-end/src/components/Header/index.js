@@ -1,10 +1,19 @@
 import * as S from "./style";
 import { DebounceInput } from "react-debounce-input";
 import { FaBars } from "react-icons/fa";
+import getAllCharacters from "../../api/getAllCharacters";
 
-export default function Header() {
-  function handleInput(e) {
-    console.log("Procurando...");
+export default function Header(props) {
+  const { setCharacters, setFilterParams, filterParams } = props;
+
+  async function handleInput(e) {
+    console.log(e)
+    await fetchInfo({ ...filterParams, name: e.target.value });
+  }
+
+  async function fetchInfo(filterParams) {
+    setFilterParams(filterParams);
+    setCharacters(await getAllCharacters(filterParams));
   }
 
   return (
@@ -13,7 +22,7 @@ export default function Header() {
         <S.HeaderWrapper>
           <S.SearchWrapper>
             <DebounceInput
-              minLength={3}
+              minLength={2}
               debounceTimeout={300}
               placeholder="Procure um personagem..."
               onChange={(e) => handleInput(e)}

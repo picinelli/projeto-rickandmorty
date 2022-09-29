@@ -21,7 +21,11 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <Header
+        setCharacters={setCharacters}
+        setFilterParams={setFilterParams}
+        filterParams={filterParams}
+      />
       <S.Container>
         <FilterDropdown
           setCharacters={setCharacters}
