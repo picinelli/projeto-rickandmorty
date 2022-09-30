@@ -1,19 +1,35 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { Button, TextField } from "@mui/material";
 import { ThreeDots } from "react-loader-spinner";
 
 import * as S from "./style";
+import DataContext from "../../providers/DataContext";
 
 export default function SignUp() {
+  const { data } = useContext(DataContext);
   const [inputData, setInputData] = useState({
-    username: "",
-    email: "",
+    name: "",
     password: "",
     passwordConfirmation: "",
   });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  async function handleSubmit() {
+    setLoading(true);
+    try {
+      await axios.post(`${data.API}/signup`, inputData);
+      setLoading(false);
+
+      navigate("/login");
+    } catch (err) {
+      toast(`Erro! ${err.response?.data}`);
+      setLoading(false);
+    }
+  }
 
   return (
     <S.Container>
@@ -22,27 +38,17 @@ export default function SignUp() {
           <h1>Registre-se!</h1>
           <S.Form>
             <TextField
-              id="outlined-basic"
+              id="username"
               label="Nome de Usuário"
               variant="outlined"
               sx={{ marginBottom: "20px" }}
-              value={inputData.username}
+              value={inputData.name}
               onChange={(e) => {
-                setInputData({ ...inputData, username: e.target.value });
+                setInputData({ ...inputData, name: e.target.value });
               }}
             />
             <TextField
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              sx={{ marginBottom: "20px" }}
-              value={inputData.email}
-              onChange={(e) => {
-                setInputData({ ...inputData, email: e.target.value });
-              }}
-            />
-            <TextField
-              id="outlined-basic"
+              id="password"
               label="Senha"
               type="password"
               variant="outlined"
@@ -53,7 +59,7 @@ export default function SignUp() {
               }}
             />
             <TextField
-              id="outlined-basic"
+              id="password_confirm"
               label="Confirme sua senha"
               type="password"
               variant="outlined"
@@ -66,7 +72,7 @@ export default function SignUp() {
                 });
               }}
             />
-            <Button variant="contained">
+            <Button onClick={handleSubmit} variant="contained">
               {loading ? (
                 <ThreeDots color="#00BFFF" height={25} width={25} />
               ) : (
