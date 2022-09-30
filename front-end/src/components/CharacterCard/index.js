@@ -1,6 +1,8 @@
 import { useState } from "react";
 import dayjs from "dayjs";
 import Modal from "react-modal";
+import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { IconContext } from "react-icons";
 
 import { viewCard } from "../../styles/ModalStyle";
 import * as S from "./style";
@@ -8,18 +10,27 @@ import * as S from "./style";
 export default function CharacterCard(props) {
   const { character } = props;
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   function closeModal() {
     setIsOpen(!modalIsOpen);
-    console.log(modalIsOpen);
   }
 
   function openModal() {
     setIsOpen(!modalIsOpen);
   }
 
+  async function chooseFavourite(e) {
+    e.stopPropagation();
+    setIsFavorite(!isFavorite);
+  }
+
   return (
-    <S.Container onClick={openModal}>
+    <S.Container
+      onClick={() => {
+        openModal();
+      }}
+    >
       <img src={character.image} alt="character" />
       <S.InfoWrapper>
         <S.Name>{character.name}</S.Name>
@@ -30,6 +41,31 @@ export default function CharacterCard(props) {
         <S.Info>{character.episode.length}</S.Info>
         <S.InfoDescription>Data de criação:</S.InfoDescription>
         <S.Info>{dayjs(character.created).format("DD/MM/YYYY")}</S.Info>
+        {isFavorite ? (
+          <IconContext.Provider
+            value={{
+              className: "selected-icon",
+            }}
+          >
+            <AiFillStar
+              onClick={(e) => {
+                chooseFavourite(e);
+              }}
+            />
+          </IconContext.Provider>
+        ) : (
+          <IconContext.Provider
+            value={{
+              className: "normal-icon",
+            }}
+          >
+            <AiOutlineStar
+              onClick={(e) => {
+                chooseFavourite(e);
+              }}
+            />
+          </IconContext.Provider>
+        )}
       </S.InfoWrapper>
       <Modal
         isOpen={modalIsOpen}

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   max-width: 450px;
   width: 100%;
   height: 200px;
@@ -24,6 +25,21 @@ export const Container = styled.div`
 
 export const InfoWrapper = styled.div`
   padding: 10px;
+
+  .normal-icon {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 30px;
+  }
+
+  .selected-icon {
+    position: absolute;
+    color: yellow;
+    right: 10px;
+    bottom: 10px;
+    font-size: 30px;
+  }
 `;
 
 export const Name = styled.h1`
