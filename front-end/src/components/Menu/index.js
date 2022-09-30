@@ -11,7 +11,7 @@ import {
 } from "@radix-ui/colors";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import DataContext from "../../providers/DataContext";
 
 const overlayShow = keyframes({
@@ -162,6 +162,7 @@ const IconButton = styled("button", {
 function Menu() {
   const navigate = useNavigate();
   const { data, setData } = useContext(DataContext);
+  const location = useLocation();
 
   function logout() {
     localStorage.removeItem("token");
@@ -227,14 +228,25 @@ function Menu() {
 
         <Flex css={{ marginTop: 25, justifyContent: "center" }}>
           <DialogClose asChild>
-            <Button
-              variant="orange"
-              onClick={() => {
-                navigate("/favoritos");
-              }}
-            >
-              Favoritados
-            </Button>
+            {location.pathname === "/favoritos" ? (
+              <Button
+                variant="orange"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Home
+              </Button>
+            ) : (
+              <Button
+                variant="orange"
+                onClick={() => {
+                  navigate("/favoritos");
+                }}
+              >
+                Favoritados
+              </Button>
+            )}
           </DialogClose>
         </Flex>
 

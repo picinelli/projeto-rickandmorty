@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Favourites from "../pages/Favourites";
 
 export default function Router() {
   const [data, setData] = useState({
@@ -22,6 +23,7 @@ export default function Router() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registro" element={<Register />} />
+            <Route path="/favoritos" element={<Favourites />} />
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>
