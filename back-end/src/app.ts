@@ -1,12 +1,11 @@
-import express, { json, Request, Response } from "express";
+import express, { json } from "express";
 import cors from "cors";
+import router from "./routes";
 
 const app = express();
 app.use(cors());
 app.use(json());
 
-app.get("/", async (req: Request, res: Response) => {
-  res.send("Hello World");
-});
+app.use(router);
 
 export default app;

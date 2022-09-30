@@ -10,9 +10,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Student {
-  id   Int    @id @default(autoincrement())
-  name String
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  @@map("students")
+  Favourite Favourite[]
+
+  @@map("users")
+}
+
+model Favourite {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  character_id String
+  name         String
+  status       String
+  species      String
+  type         String
+  gender       String
+  originName   String
+  originUrl    String
+  locationName String
+  locationUrl  String
+  image        String
+  episode      String[]
+  url          String
+  created      DateTime
+
+  User User @relation(fields: [userId], references: [id])
+
+  @@map("favourites")
 }
