@@ -1,7 +1,10 @@
-import * as S from "./style";
+import { useNavigate } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
 import { FaBars } from "react-icons/fa";
+
+import * as S from "./style";
 import getAllCharacters from "../../api/getAllCharacters";
+import Menu from "../Menu";
 
 export default function Header(props) {
   const { setCharacters, setFilterParams, filterParams } = props;
@@ -28,15 +31,7 @@ export default function Header(props) {
               onChange={(e) => handleInput(e)}
             />
           </S.SearchWrapper>
-          <FaBars
-            style={{
-              color: "white",
-              height: "25px",
-              width: "25px",
-              position: "absolute",
-              right: "2rem",
-            }}
-          />
+          <Menu />
         </S.HeaderWrapper>
       </S.Container>
       <S.Divider />

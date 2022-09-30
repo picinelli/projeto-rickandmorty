@@ -137,6 +137,6 @@ body{
 }
 
 :root {
-  --orange: #F74C40
+  --orange: #ff923c
 }
 `;

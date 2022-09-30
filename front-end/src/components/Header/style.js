@@ -72,10 +72,45 @@ export const SearchWrapper = styled.div`
   }
 
   @media (max-width: 900px) {
-    max-width: 100%;
+    max-width: 70%;
   }
 `;
 
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  background-color: darkgray;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 60px;
+  right: 50px;
+  width: 150px;
+  height: 100px;
+  border-radius: 8px;
+  
+`;
+
+export const LoginButton = styled.button`
+  width: 100px;
+  height: 30px;
+  background-color: #3cbfff;
+  border: 0;
+  border-radius: 5px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+export const LogoutButton = styled.button`
+  width: 100px;
+  height: 30px;
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+`;
 
 export const Divider = styled.div`
   width: 100vw;
