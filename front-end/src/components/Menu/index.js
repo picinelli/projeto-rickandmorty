@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { styled, keyframes } from "@stitches/react";
 import {
   violet,
@@ -12,6 +12,7 @@ import {
 import { Cross2Icon } from "@radix-ui/react-icons";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useNavigate } from "react-router-dom";
+import DataContext from "../../providers/DataContext";
 
 const overlayShow = keyframes({
   "0%": { opacity: 0 },
@@ -160,6 +161,12 @@ const IconButton = styled("button", {
 
 function Menu() {
   const navigate = useNavigate();
+  const { data, setData } = useContext(DataContext);
+
+  function logout() {
+    localStorage.removeItem("token");
+    setData({ ...data, token: null });
+  }
 
   return (
     <Dialog>
@@ -171,37 +178,48 @@ function Menu() {
           <DialogTitle css={{ fontWeight: "bold" }}>Conta</DialogTitle>
         </Flex>
 
-        <Flex css={{ marginTop: 25, justifyContent: "center" }}>
-          <DialogClose asChild>
-            <Button
-              variant="blue"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Login
-            </Button>
-          </DialogClose>
-        </Flex>
+        {data.token ? (
+          <Flex css={{ marginTop: 25, justifyContent: "center" }}>
+            <DialogClose asChild>
+              <Button
+                onClick={() => {
+                  logout();
+                }}
+                variant="red"
+              >
+                Sair
+              </Button>
+            </DialogClose>
+          </Flex>
+        ) : (
+          <>
+            <Flex css={{ marginTop: 25, justifyContent: "center" }}>
+              <DialogClose asChild>
+                <Button
+                  variant="blue"
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Login
+                </Button>
+              </DialogClose>
+            </Flex>
 
-        <Flex css={{ marginTop: 25, justifyContent: "center" }}>
-          <DialogClose asChild>
-            <Button
-              variant="green"
-              onClick={() => {
-                navigate("/registro");
-              }}
-            >
-              Registrar
-            </Button>
-          </DialogClose>
-        </Flex>
-
-        <Flex css={{ marginTop: 25, justifyContent: "center" }}>
-          <DialogClose asChild>
-            <Button variant="red">Sair</Button>
-          </DialogClose>
-        </Flex>
+            <Flex css={{ marginTop: 25, justifyContent: "center" }}>
+              <DialogClose asChild>
+                <Button
+                  variant="green"
+                  onClick={() => {
+                    navigate("/registro");
+                  }}
+                >
+                  Registrar
+                </Button>
+              </DialogClose>
+            </Flex>
+          </>
+        )}
 
         <DialogTitle css={{ marginTop: 50, fontWeight: "bold" }}>
           Perfil

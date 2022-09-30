@@ -9,7 +9,7 @@ import Register from "../pages/Register";
 export default function Router() {
   const [data, setData] = useState({
     API: process.env.REACT_APP_BASE_URL,
-    token: "",
+    token: null,
     user: {},
   });
 
