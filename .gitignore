@@ -4,3 +4,4 @@ node_modules
 .env.dev
 .env.test
 back-end/prisma/migrations
+back-end/coverage

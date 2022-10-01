@@ -26,7 +26,7 @@ async function signIn(userInfo: UserInfo) {
   if (!user) throwError("This account does not exists!", 404);
 
   const isPasswordCorrect = bcrypt.compareSync(password, user.password);
-  if (!isPasswordCorrect) throwError("Email or password incorrect", 403);
+  if (!isPasswordCorrect) throwError("Name or password incorrect!", 403);
 
   return createToken(user);
 }

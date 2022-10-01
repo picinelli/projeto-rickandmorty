@@ -11,21 +11,21 @@ export default function Favourites() {
   const { data, setData } = useContext(DataContext);
 
   useEffect(() => {
+    if (!data.token) {
+      toast("Você precisa estar logado para ver os favoritos");
+      return setData({ ...data, favourited: [] });
+    }
     fetchInfo();
   }, []);
 
   async function fetchInfo() {
     try {
-      if (data.token) {
-        const characters = await axios.get(`${data.API}/favourites`, {
-          headers: {
-            Authorization: `Bearer ${data.token}`,
-          },
-        });
-        setData({ ...data, favourited: characters.data });
-      } else {
-        toast("Você precisa criar uma conta para ter favoritos");
-      }
+      const characters = await axios.get(`${data.API}/favourites`, {
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      });
+      setData({ ...data, favourited: characters.data });
     } catch (err) {
       toast("Erro interno! Tente novamente mais tarde.");
     }
