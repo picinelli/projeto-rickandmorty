@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import dayjs from "dayjs";
 import Modal from "react-modal";
+import { toast } from "react-toastify";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { IconContext } from "react-icons";
 
 import { viewCard } from "../../styles/ModalStyle";
 import * as S from "./style";
+import axios from "axios";
+import DataContext from "../../providers/DataContext";
 
 export default function CharacterCard(props) {
   const { character } = props;
+  const { data, setData } = useContext(DataContext);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -22,7 +26,19 @@ export default function CharacterCard(props) {
 
   async function chooseFavourite(e) {
     e.stopPropagation();
-    setIsFavorite(!isFavorite);
+    if (!data.token) {
+      return toast("Você precisa estar logado para favoritar");
+    }
+    try {
+      await axios.post(`${data.API}/favourite`, character, {
+        headers: {
+          Authorization: `Bearer ${data.token}`,
+        },
+      });
+      setIsFavorite(!isFavorite);
+    } catch (err) {
+      return toast("Algum erro ocorreu! Tente novamente mais tarde.");
+    }
   }
 
   return (

@@ -25,7 +25,7 @@ model User {
 model Favourite {
   id           Int      @id @default(autoincrement())
   userId       Int
-  character_id String
+  character_id Int
   name         String
   status       String
   species      String
@@ -42,5 +42,6 @@ model Favourite {
 
   User User @relation(fields: [userId], references: [id])
 
+  @@unique([userId, character_id])
   @@map("favourites")
 }
