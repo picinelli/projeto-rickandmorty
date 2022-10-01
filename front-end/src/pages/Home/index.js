@@ -23,7 +23,7 @@ export default function Home() {
 
   async function fetchInfo() {
     try {
-      const characters = await getAllCharacters();
+      const characters = await getAllCharacters(filterParams);
       setCharacters(characters);
       if (data.token) {
         const request = await axios.get(`${data.API}/favourites`, {
