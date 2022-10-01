@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
-import getAllCharacters from "../../api/getAllCharacters";
 import CharacterCard from "../../components/CharacterCard";
 import Header from "../../components/Header";
 import DataContext from "../../providers/DataContext";
