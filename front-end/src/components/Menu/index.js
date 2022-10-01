@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { styled, keyframes } from "@stitches/react";
 import {
   violet,
@@ -168,6 +168,11 @@ function Menu() {
     localStorage.removeItem("token");
     setData({ ...data, token: null });
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) setData({ ...data, token });
+  }, []);
 
   return (
     <Dialog>

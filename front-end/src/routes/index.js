@@ -10,7 +10,7 @@ import Favourites from "../pages/Favourites";
 export default function Router() {
   const [data, setData] = useState({
     API: process.env.REACT_APP_BASE_URL,
-    token: null,
+    token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
     user: {},
   });
 

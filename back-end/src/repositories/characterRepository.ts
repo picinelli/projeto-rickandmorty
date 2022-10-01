@@ -8,7 +8,7 @@ async function findCharacterByUserId(characterId: number, userId: number) {
 }
 
 async function getFavouritesByUserId(userId: number) {
-  return await prisma.favourite.findFirst({
+  return await prisma.favourite.findMany({
     where: { userId },
   });
 }

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
@@ -11,10 +11,16 @@ import axios from "axios";
 import DataContext from "../../providers/DataContext";
 
 export default function CharacterCard(props) {
-  const { character } = props;
-  const { data, setData } = useContext(DataContext);
+  let { character, favourite, fetchInfo } = props;
+  const { data } = useContext(DataContext);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    if (isFavorite !== favourite) {
+      setIsFavorite(isFavorite);
+    }
+  }, []);
 
   function closeModal() {
     setIsOpen(!modalIsOpen);
@@ -35,7 +41,7 @@ export default function CharacterCard(props) {
           Authorization: `Bearer ${data.token}`,
         },
       });
-      setIsFavorite(!isFavorite);
+      fetchInfo();
     } catch (err) {
       return toast("Algum erro ocorreu! Tente novamente mais tarde.");
     }
@@ -57,7 +63,7 @@ export default function CharacterCard(props) {
         <S.Info>{character.episode.length}</S.Info>
         <S.InfoDescription>Data de criação:</S.InfoDescription>
         <S.Info>{dayjs(character.created).format("DD/MM/YYYY")}</S.Info>
-        {isFavorite ? (
+        {isFavorite || favourite ? (
           <IconContext.Provider
             value={{
               className: "selected-icon",

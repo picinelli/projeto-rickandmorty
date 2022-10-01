@@ -8,14 +8,14 @@ async function createFavourite(characterInfo: CharacterInfo, user: User) {
     user.id
   );
   if (userHasCharacter) {
-    await characterRepository.removeFavourite(characterInfo.id, user.id);
+    return await characterRepository.removeFavourite(characterInfo.id, user.id);
   }
 
   await characterRepository.insertFavourite(characterInfo, user.id);
 }
 
 async function getFavourites(user: User) {
-  await characterRepository.getFavouritesByUserId(user.id);
+  return await characterRepository.getFavouritesByUserId(user.id);
 }
 
 export const characterService = {
