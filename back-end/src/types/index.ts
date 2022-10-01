@@ -24,13 +24,3 @@ export type CharacterInfo = {
   url: string;
   created: Date;
 };
-
-type Origin = {
-  name: string;
-  url: string;
-};
-
-type Location = {
-  name: string;
-  url: string;
-};
