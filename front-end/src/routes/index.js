@@ -11,7 +11,7 @@ export default function Router() {
   const [data, setData] = useState({
     API: process.env.REACT_APP_BASE_URL,
     token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
-    user: {},
+    favourited: [],
   });
 
   return (

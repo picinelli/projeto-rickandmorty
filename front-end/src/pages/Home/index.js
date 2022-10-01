@@ -43,7 +43,7 @@ export default function Home() {
   function isFavourited(character) {
     if (favourited.length === 0) return false;
     for (let i = 0; i < favourited.length; i++) {
-      if (character.id === favourited[i].character_id) {
+      if (character.id === favourited[i].id) {
         return true;
       }
     }
