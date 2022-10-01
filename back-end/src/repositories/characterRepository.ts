@@ -7,6 +7,12 @@ async function findCharacterByUserId(characterId: number, userId: number) {
   });
 }
 
+async function getFavouritesByUserId(userId: number) {
+  return await prisma.favourite.findFirst({
+    where: { userId },
+  });
+}
+
 async function removeFavourite(characterId: number, userId: number) {
   return await prisma.favourite.delete({
     where: {
@@ -38,6 +44,7 @@ async function insertFavourite(characterInfo: CharacterInfo, userId: number) {
 }
 
 export const characterRepository = {
+  getFavouritesByUserId,
   findCharacterByUserId,
   insertFavourite,
   removeFavourite,

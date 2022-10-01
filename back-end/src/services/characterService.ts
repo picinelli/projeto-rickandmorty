@@ -1,10 +1,8 @@
-import { authRepository } from "../repositories/authRepository.js";
-import throwError from "../utils/throwError.js";
 import { CharacterInfo } from "../types/index.js";
 import { User } from "@prisma/client";
 import { characterRepository } from "../repositories/characterRepository.js";
 
-async function favourite(characterInfo: CharacterInfo, user: User) {
+async function createFavourite(characterInfo: CharacterInfo, user: User) {
   const userHasCharacter = await characterRepository.findCharacterByUserId(
     characterInfo.id,
     user.id
@@ -16,6 +14,11 @@ async function favourite(characterInfo: CharacterInfo, user: User) {
   await characterRepository.insertFavourite(characterInfo, user.id);
 }
 
+async function getFavourites(user: User) {
+  await characterRepository.getFavouritesByUserId(user.id);
+}
+
 export const characterService = {
-  favourite,
+  createFavourite,
+  getFavourites,
 };
