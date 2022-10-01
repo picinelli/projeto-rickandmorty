@@ -64,6 +64,13 @@ BACK-END:
 
 ------------------------
 
+Testes:
+Na pasta back-end
+- crie um arquivo .env.test (dados no .env.test.example)
+- execute: npm run test
+
+------------------------
+
 Se você quiser rodar a aplicação através do Docker, faça o seguinte:
 Na pasta do back-end, crie um arquivo .env.dev (dados no .env.dev.example)
 e então, na mesma pasta, execute npm run dev:compose 
