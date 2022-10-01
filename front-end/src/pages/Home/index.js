@@ -11,7 +11,7 @@ import axios from "axios";
 export default function Home() {
   const [characters, setCharacters] = useState([]);
   const [favourited, setFavourited] = useState([]);
-  const { data, setData } = useContext(DataContext);
+  const { data } = useContext(DataContext);
   const [filterParams, setFilterParams] = useState({
     species: null,
     name: null,
