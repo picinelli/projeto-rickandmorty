@@ -3,10 +3,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/picinelli/projeto-rickandmorty">
-    <img src="https://ovicio.com.br/wp-content/uploads/2019/07/20190716-cropped-20190716-rick-e-morty.jpg" alt="Logo" width="100">
+    <img src="https://ovicio.com.br/wp-content/uploads/2019/07/20190716-cropped-20190716-rick-e-morty.jpg" alt="Logo" width="250">
   </a>
 
-<h3 align="center">[Suflex] Projeto Rick and Morty - Full Stack</h3>
+<h3 align="center">[Suflex] Desafio Rick and Morty - Full Stack</h3>
   <h4 align="center"> 
 	🚀 Concluído! 🚀
   </h4>
@@ -17,9 +17,33 @@
 
 ## Sumário
 
+- [Introdução](#introdução)
 - [Instalação](#instalação)
 - [Tecnologias Utilizadas](#tecnologias)
 - [Contato](#contato)
+
+## Introdução
+
+Neste desafio, deve ser criado uma SPA que vai consumir a [The Rick and Morty API], Este desafio consiste em uma listagem de personagens do Rick e Morty , exibindo os detalhes sobre cada personagem.
+
+Ao efetuar login uma opção de favoritar personagem é disponibilizada, e todos os personagems favoritados são salvos no banco da aplicação. E listado em uma pagina de favoritos também disponível apenas após login.
+
+Requisitos: 
+
+Deslogado:
+- Lista dos personagens com seus respectivos nomes e fotos.
+- Busca por personagens (Nome)
+- Filtro que permita listar todos, só humanos ou só aliens
+- Os filtros devem funcionar sozinhos ou combinados
+- Ao clicar no personagem, permitir a visualização detalhada com pelo menos: Nome, status, specie, quantidade de episódios e data de criação
+- Usuário deve ser capaz de criar uma conta na aplicação
+- Usuário deve ser capaz de logar com a conta criada
+
+Logado
+- Todas as funcionalidade de Deslogado, exceto criar usuário e logar
+- Usuário deve ser capaz de deslogar da aplicação
+- Permitir criar uma lista de favoritos e adicionar/remover personagens nela
+- Persistir a lista favoritada em banco para futuros logins
 
 
 ## Instalação
@@ -44,7 +68,8 @@ Se você quiser rodar a aplicação através do Docker, faça o seguinte:
 Na pasta do back-end, crie um arquivo .env.dev (dados no .env.dev.example)
 e então, na mesma pasta, execute npm run dev:compose 
 
-após a instalação das imagens, e funcionamento do container, você poderá acessar o site na url http://localhost:8080/
+após a instalação das imagens, e funcionamento do container, você poderá acessar o site na url abaixo:
+http://localhost:8080/
 
 
 ```
